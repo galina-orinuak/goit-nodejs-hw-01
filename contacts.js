@@ -18,16 +18,16 @@ export const getContactById = async (contactId) => {
   return result || null;
 };
 
-export const removeContact = async (id, data) => {
+export const removeContact = async (id) => {
   const contacts = await listContacts();
   const index = contacts.findIndex(contact => contact.id === id);
   if (index === -1) {
     return null;
   }
 
-  contacts[index] = { ...contacts[index], ...data };
+  const [result] = contacts.splice(index, 1);
   await updateContacts(contacts);
-  return contacts[index];
+  return result;
 };
 
 export const addContact = async (name, email, phone) => {
