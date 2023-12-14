@@ -26,7 +26,7 @@ export const removeContact = async (id, data) => {
   }
 
   contacts[index] = { ...contacts[index], ...data };
-  await listContacts(contacts);
+  await updateContacts(contacts);
   return contacts[index];
 };
 
